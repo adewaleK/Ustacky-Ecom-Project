@@ -15,14 +15,13 @@ body{
 
 .intro-wrapper {
     background-color: #FFE9D6;  
-    padding-bottom: 50px;
-
+    height: 100%;
+    padding-bottom: 40px;
 }
 
 .intro-section{
     margin: 0 auto;
     width: 80%;
-    height: 100vh;
 }
 
 .navbar{
@@ -60,7 +59,7 @@ body{
 .hero-section {
     width: 90%;
     margin: 0 auto;
-    margin-top: 70px;
+    margin-top: 45px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,6 +109,7 @@ body{
     width: 80%;
     margin: 0 auto;
     margin-top: 70px;
+    padding-bottom: 70px;
 }
 
 .product-card{
@@ -140,7 +140,20 @@ body{
 .footer-items{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 0 auto;
     width: 80%;
+    padding: 100px 0;
+}
+
+.footer-logo{
+    background-color: #FF7A00;
+    padding: 0 8px;
+    font-size: 60px;
+    font-weight: 800;
+}
+
+.designer p{
     color: #fff;
+    font-size: 20px;
 }
