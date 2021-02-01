@@ -21,8 +21,9 @@
                       <li><h2>Shop</h2></li>
                     </ul>
                 
-                <div class="cart">
-                    <h3>Cart Box</h3>
+                <div class="cart" id="test">
+                    <img src="images/cart.svg" alt="cart" style="height: 45px;">
+                    <span id="num">0</span>
                 </div>
             </div>
             <h1>INTRODUCTION SECTION</h1>
@@ -30,4 +31,14 @@
     </div>
     
 </body>
+
+<script>
+    var elem = document.getElementById('test');
+    var num = document.getElementById('num');
+    var number=0;
+    elem.onclick = function(){
+        number++;
+        num.textContent = number;
+    }
+</script>
 </html>
