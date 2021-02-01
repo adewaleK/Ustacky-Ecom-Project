@@ -11,8 +11,12 @@ body{
 
 .container{
     width: 100%;
-    background-color: #FFE9D6;
-    
+}
+
+.intro-wrapper {
+    background-color: #FFE9D6;  
+    padding-bottom: 50px;
+
 }
 
 .intro-section{
@@ -71,10 +75,29 @@ body{
     background-color: #FF7A00;
     text-align: center;
     width: 270px;
-    margin: 0px auto;
-    margin-bottom: 30px;
+    margin: 20px auto;
     outline: none;
     color: #fff;
     padding: 13px 80px;
     border-radius: 5px;
+}
+
+.about{
+    margin: 0 auto;
+    background-color: #000;
+}
+
+.about div{
+    width: 80%;
+    margin: 0 auto;
+    padding: 70px 0;
+    color: #fff;
+    font-size: 25px;
+    text-align: center;
+    line-height: 38px;
+}
+
+.gadgets h1{
+    text-align: center;
+    margin: 30px 50px;
 }
