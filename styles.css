@@ -31,8 +31,7 @@ body{
 .navbar ul{
     list-style: none;
     display: flex;
-    justify-content: space-between;
-    
+    justify-content: space-between;  
 }
 
 .navbar li{
@@ -52,4 +51,30 @@ body{
     color: #fff;
     font-size: 30px;
     margin-left: 15px;
+}
+
+.hero-section {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-section h1{
+    font-size: 80px;
+    color: #FF7A00;
+}
+
+.shop{
+    background-color: #FF7A00;
+    text-align: center;
+    width: 270px;
+    margin: 0px auto;
+    margin-bottom: 30px;
+    outline: none;
+    color: #fff;
+    padding: 13px 80px;
+    border-radius: 5px;
 }
