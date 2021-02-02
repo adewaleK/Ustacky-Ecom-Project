@@ -47,36 +47,17 @@
 
         <div class="gadgets">
             <h1>OUR GADGETS</h1>
-            <div class="products">
-                <div class="product-card">
-                    <img src="images/product1.png" alt="product1">
-                    <h3>SAMSUNG TV</h3>
-                    <div class="add-to-cart">ADD TO CART</div>
-                </div>
-                <div class="product-card">
-                    <img src="images/product1.png" alt="product1">
-                </div>
-                <div class="product-card">
-                    <img src="images/product1.png" alt="product1">
-                </div>
-                <div class="product-card">
-                    <img src="images/product1.png" alt="product1">
-                </div>
-                <div class="product-card">
-                    <img src="images/product1.png" alt="product1">
-                </div>
-                
-            </div>
+            <div class="products" id="products"></div>
         </div>
 
         <div class="footer">
             <div class="footer-items">
-                <!-- <h1 class="footer-logo">EMS</h1> -->
                 <p class="footer-logo">EMS</p>
                 <div class="designer">
                     <p>Designed and Crafted by a Frontend Ninja</p>
                 </div>
             </div>
+            <div id="test-id"></div>
         </div>
 
     </div>
@@ -84,14 +65,65 @@
 </body>
 
 <script>
-    var elem = document.getElementById('test');
-    var num = document.getElementById('num');
-    var number=0;
-    elem.onclick = function(){
-        number++;
-        num.textContent = number;
-    }
+    const products = [
+        {
+            id: 1,
+            title: "SAMSUNG TV",
+            image: "product1.png",
+            price: "500,000"
+        },
+        {
+            id: 2,
+            title: "PIXEL 4a",
+            image: "product2.png",
+            price: "300,000"
+        },
+        {
+            id: 3,
+            title: "PS 5",
+            image: "product3.png",
+            price: "250,000"
+        },
+        {
+            id: 4,
+            title: "MACBOOK AIR",
+            image: "product4.png",
+            price: "400,000"
+        },
+        {
+            id: 5,
+            title: "APPLE WATCH",
+            image: "product5.png",
+            price: "200,000"
+        },
+        {
+            id: 6,
+            title: "AIR PODS",
+            image: "product6.png",
+            price: "300,000"
+        },
+    ];
 
 
+    function loadProducts(){
+        products.map(product => {
+            var products = document.getElementById('products'); 
+            products.classList.add("products"); 
+            products.innerHTML +=   `
+                <div class="product-card" id="product-box" > 
+                    <div class="prod${product.id}-img">
+                     <div class="prod-details">
+                         <p class="price">Price</p>
+                         <p>&#8358;${product.price}</p>
+                     </div>
+                    </div>
+                    <h3 id="title">${product.title}</h3>
+                    <button type="button" class="add-to-cart" data-id="${product.id}" >ADD TO CART</button>
+                </div>
+                `; 
+            })
+        }
+
+    window.onload = loadProducts;
 </script>
 </html>
