@@ -109,13 +109,13 @@
         products.map(product => {
             var products = document.getElementById('products'); 
             products.classList.add("products"); 
-            products.innerHTML +=   `
-                <div class="product-card" id="product-box" > 
-                    <div class="prod${product.id}-img">
-                     <div class="prod-details">
-                         <p class="price">Price</p>
-                         <p>&#8358;${product.price}</p>
-                     </div>
+            products.innerHTML += `
+                <div class="product-card" id="product-box"> 
+                    <div class="prod${product.id}-img prod${product.id}-details prod-feature">
+                        
+                            <p class="price">Price</p>
+                            <p>&#8358;${product.price}</p>
+                        
                     </div>
                     <h3 id="title">${product.title}</h3>
                     <button type="button" class="add-to-cart" data-id="${product.id}" >ADD TO CART</button>
@@ -123,6 +123,17 @@
                 `; 
             })
         }
+
+        function hoverEffect(x){
+            //when hover on product card x
+               x.classList.add(opaque);
+               x.style.color ="#fff";
+               //apply opaque BG style to x
+               //then change 'color' of product-details to #fff
+        }
+
+        var card = document.getElementById('product-box');
+  
 
     window.onload = loadProducts;
 </script>

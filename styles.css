@@ -38,7 +38,7 @@ body{
 }
 
 .navbar li{
-    margin-right: 15px;
+    margin-right: 20px;
 }
 
 .navbar li:hover{
@@ -129,82 +129,88 @@ body{
     margin-top: 5px;
 }
 
-
-.prod1-img{
-    background-image: url("images/product1.png");
+.prod-feature{
     background-size: cover;
     background-repeat: no-repeat;
     height: 393px;
     width: 301px;
-}
-.prod2-img{
-    background-image: url("images/product2.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 393px;
-    width: 301px;
-}
-.prod3-img{
-    background-image: url("images/product3.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 393px;
-    width: 301px;
-}
-.prod4-img{
-    background-image: url("images/product4.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 393px;
-    width: 301px;
-}
-.prod5-img{
-    background-image: url("images/product5.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 393px;
-    width: 301px;
-}
-.prod6-img{
-    background-image: url("images/product6.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 393px;
-    width: 301px;
-}
-
-.prod-details{
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
     justify-content: center;
-    margin-top: 50%;
     color: transparent;
 }
 
-.prod-details:hover{
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-
-.prod-details .price{
+.prod-feature .price{
     font-size: 25px;
     text-decoration: underline;
 }
-.prod-details p{
+.prod-feature p{
     font-size: 45px;
     margin-bottom: 15px;
 }
 
+.prod1-img{
+    background-image: url("images/product1.png");
+}
+
+.prod2-img{
+    background-image: url("images/product2.png");
+}
+.prod3-img{
+    background-image: url("images/product3.png");
+}
+.prod4-img{
+    background-image: url("images/product4.png");
+}
+.prod5-img{
+    background-image: url("images/product5.png");
+}
+.prod6-img{
+    background-image: url("images/product6.png");
+}
+
+.prod1-details,
+.prod2-details,
+.prod3-details,
+.prod4-details,
+.prod5-details,
+.prod6-details{
+    border-radius: 10px;
+}
+
+.prod1-details:hover{
+    color: #fff;   
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("images/product1.png");    
+}
+.prod2-details:hover{
+    color: #fff;   
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("images/product2.png");    
+}
+.prod3-details:hover{
+    color: #fff;   
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("images/product3.png");    
+}
+.prod4-details:hover{
+    color: #fff;   
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("images/product4.png");    
+}
+.prod5-details:hover{
+    color: #fff;   
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("images/product5.png");    
+}
+.prod6-details:hover{
+    color: #fff;   
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("images/product6.png");    
+}
 
 .add-to-cart{
     background-color: #FF7A00;
     text-align: center; 
     width: 230px;
     font-weight: 800;
-    margin: 20px auto;
+    margin: 15px 10%;
     border: none;
     color: #000;
     padding: 10px 20px;
