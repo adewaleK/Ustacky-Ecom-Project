@@ -8,21 +8,72 @@
 </head>
 <body>
     <div class="container">
-        
+        <div class="modal-bg">
+            <div class="cart-modal">
+                <div class="cart-details">
+                    <table class="">
+                        <thead>
+                          <tr style="margin-bottom: 50px;">
+                            <th>S/N</th>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>Air Pod</td>
+                            <td>400</td>
+                            <td class="qty-btn">
+                                <button type="button"> - </button>
+                                <span>2</span>
+                                <button type="button"> + </button>
+                            </td>
+                            <td><button type="button" class="remove-btn">Remove</button></td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Mobile Phone</td>
+                            <td>700</td>
+                            <td class="qty-btn">
+                                <button type="button"> - </button>
+                                <span>1</span>
+                                <button type="button"> + </button>
+                            </td>
+                            <td><button type="button" class="remove-btn">Remove</button></td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    <form action="" >
+                        <input type="text" placeholder="Your Name">
+                        <input type="email" placeholder="Your Email">
+                        <input type="number" placeholder="Your Phone Number">
+                    </form>
+                    <div class="summary-actions">
+                        <h3>Total Amount to be Paid</h3>
+                        <h2>&#8358;80,000</h2>
+                    </div>
+                    <div class="next-btn">
+                        <button type="button">Continue Shopping</button>
+                        <button type="button">Checkout</button>
+                      </div>
+                </div>
+            </div>
+        </div> 
        <div class="intro-wrapper">
         <div class="intro-section">
             <div class="navbar">
                 <div class="logo">
                     <img src="images/EMS.svg" alt="EMS-LOGO">
                 </div>
-                
                     <ul>
                       <li><h2>Intro</h2></li>
                       <li><h2>About</h2></li>
                       <li><h2>Shop</h2></li>
                     </ul>
-                
-                <div class="cart" id="test">
+                <div class="cart">
                     <img src="images/cart.svg" alt="cart">
                     <span id="num">0</span>
                 </div>

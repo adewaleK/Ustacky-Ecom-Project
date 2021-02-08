@@ -55,15 +55,20 @@ function loadProducts(){
         })
     }
 
-    function hoverEffect(x){
-        //when hover on product card x
-           x.classList.add(opaque);
-           x.style.color ="#fff";
-           //apply opaque BG style to x
-           //then change 'color' of product-details to #fff
-    }
-
-    var card = document.getElementById('product-box');
-
 
 window.onload = loadProducts;
+
+let modalBg = document.querySelector('.modal-bg');
+let cartBtn = document.querySelector('.cart');
+cartBtn.addEventListener('click', cartModal);
+window.addEventListener('click', removeModal)
+
+function cartModal(){
+    modalBg.classList.add('active-bg');
+}
+
+function removeModal(event){
+    if(event.target == modalBg){
+       modalBg.classList.remove('active-bg');
+    }
+}
