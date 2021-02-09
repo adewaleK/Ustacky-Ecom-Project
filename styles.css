@@ -16,6 +16,7 @@ body{
 .modal-bg{
     display: flex;
     justify-content: center;
+    padding: 2%;
     align-items: center;
     position: fixed;
     top: 0;
@@ -39,7 +40,9 @@ body{
     padding: 1%;
 }
 
-
+.cart-details{
+    padding-right: 2.2%;
+}
 
 .cart-headings{
     display: flex;
@@ -169,11 +172,15 @@ input{
 .cart{
     display: flex;
     align-items: center;
-    padding: 2.00em 1.25em;
+    padding: 1.80em 1.25em;
     border-radius: 30px;
     background-color: #FF7A00;
     height: 50px;
     cursor: pointer;
+}
+
+.cart img{
+    height: 43px;
 }
 
 .cart span{
@@ -366,6 +373,7 @@ input{
     font-size: 20px;
 }
 
+
 @media screen and (max-width: 768px) {
 
     .intro-wrapper {
@@ -415,6 +423,7 @@ input{
 
     .gadgets h1{
         margin: 15px 30px;
+        font-size: 40px;
     }
 
     .products {
@@ -454,6 +463,10 @@ input{
     .cart-modal{
         width: 87%;
     }
+
+    .modal-bg{
+        padding-right: 3.5%;
+    }
    
 }
 
@@ -469,11 +482,11 @@ input{
      }
 
      .hero-section img{
-        width: 400px;
+        width: 380px;
     }
 
     .hero-section h1{
-        font-size: 60px
+        font-size: 50px
     }
 
     .cart-modal{
