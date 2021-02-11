@@ -3,37 +3,43 @@ const products = [
         id: 1,
         title: "SAMSUNG TV",
         image: "product1.png",
-        price: "500,000"
+        price: "500,000",
+        quantity:1
     },
     {
         id: 2,
         title: "PIXEL 4a",
         image: "product2.png",
-        price: "300,000"
+        price: "300,000",
+        quantity:1
     },
     {
         id: 3,
         title: "PS 5",
         image: "product3.png",
-        price: "250,000"
+        price: "250,000",
+        quantity:1
     },
     {
         id: 4,
         title: "MACBOOK AIR",
         image: "product4.png",
-        price: "400,000"
+        price: "400,000",
+        quantity:1
     },
     {
         id: 5,
         title: "APPLE WATCH",
         image: "product5.png",
-        price: "200,000"
+        price: "200,000",
+        quantity:1
     },
     {
         id: 6,
         title: "AIR PODS",
         image: "product6.png",
-        price: "300,000"
+        price: "300,000",
+        quantity:1
     },
 ];
 
