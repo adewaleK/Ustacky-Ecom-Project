@@ -41,8 +41,8 @@ body{
     width: 100%;
     height: 100vh;
     background-color: rgba(0,0,0,0.6);
-    visibility: visible; 
-    opacity: 1; 
+    visibility: hidden; 
+    opacity: 0; 
     transition: visibility 0s, opacity 0.8s;
 }
 
@@ -56,10 +56,6 @@ body{
     width: 55%;
     padding: 1% 0 1% 1%;
 }
-
-/* .cart-details{
-    padding-right: 2.2%;
-} */
 
 .cart-headings{
     display: flex;
@@ -129,10 +125,12 @@ input{
 
 .summary-actions h3{
     margin-bottom: 4%;
+    font-size: 1.7em;
 }
 
 .summary-actions h2{
     margin-bottom: 1%;
+    font-size: 1.8em;
 }
 
 .next-btn{ 
@@ -222,7 +220,7 @@ input{
 }
 
 .navbar li{
-    margin-right: 20px;
+    margin-right: 25px;
 }
 
 .navbar li:hover{
@@ -247,9 +245,8 @@ input{
     color: #fff;
     font-size: 30px;
     margin-left: 15px;
+    font-weight: bold;
 }
-
-
 
 .hero-section {
     width: 90%;
@@ -267,6 +264,7 @@ input{
 .hero-section h1{
     font-size: 80px;
     color: #FF7A00;
+    font-weight: 800;
 }
 
 .shop{
@@ -441,7 +439,6 @@ input{
     }
 
     .cart-details {
-        /* padding-bottom: 1%; */
         padding-right: 2.5%;
     }
 
@@ -536,21 +533,63 @@ input{
     .modal-bg{
         padding-right: 3.5%;
     }
+
+    .summary-actions h3{
+        font-size: 1.4em;
+    }
    
 } 
 
-@media screen (width: 768px){
+@media screen and (width: 768px){
+
+    .hero-section {
+        flex-direction: row;
+    }
+    
+    .navbar li{
+        margin-right: 25px;
+        font-size: 13px;
+    }
+
+    .logo img{
+        display: block;
+    }
+
+    .cart{
+        padding: 1.80em 1.25em;
+    }
+
+    
+    .cart img{
+        width: 40px;
+        height: 40px;
+    }
+
+    .cart span{
+        font-size: 25px;
+    }    
+
     .next-btn button{
         margin-right: 10px;
     }
 
     .cart-modal{
-        width: 40%;
+        width: 50%;
     }
+
+    .products {
+        grid-template-columns: auto auto;
+        column-gap: 5%;
+     }
 
 }
 
 @media screen and (min-width: 769px) and (max-width: 1000px) {
+
+    .navbar ul{
+        justify-content: flex-start;
+    }
+
     .products {
         grid-template-columns: auto auto;
      }
