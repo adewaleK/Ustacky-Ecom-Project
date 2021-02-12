@@ -68,23 +68,15 @@ function loadProducts(){
 document.addEventListener("DOMContentLoaded", function(){
     loadProducts();
     addToCart();
-//displayCart();
-   
-
+    cont();
 
 });
-
-//document.addEventListener("DOMContentLoaded",  displayCart);
-
-
-
 
 
 let modalBg = document.querySelector('.modal-bg');
 let cartBtn = document.querySelector('.cart');
 cartBtn.addEventListener('click', cartModal);
 window.addEventListener('click', removeModal)
-
 
 function cartModal(){
     modalBg.classList.add('active-bg');
@@ -104,15 +96,8 @@ function removeModal(event){
       //Change background of Add to cart button
       //Display the product in the cart
 
-      var btns = document.querySelectorAll(".add-to-cart");
-      var btn_arr = Array.from(btns);
-    //   btns.forEach(function(bt){
-    //       bt.addEventListener('click', function(e){
-    //           console.log(bt);
-    //       })
-    //   });
-    //console.log(btn_arr);
-    
+    var btns = document.querySelectorAll(".add-to-cart");
+    var btn_arr = Array.from(btns);
     let myCart = [];
     function addToCart(){
         var btns = document.querySelectorAll(".add-to-cart");
@@ -154,7 +139,20 @@ function removeModal(event){
 
             totalPrice += pd.price * pd.quantity;
             console.log(totalPrice);
+
+            var total = document.getElementById('total-price');
+            total.innerHTML = totalPrice;
+            document.getElementById('num').innerHTML = myCart.length;
            
          //})
+    }
+
+    //continue shopping
+    function cont(){
+        var backToShop = document.getElementById('continue');
+        backToShop.addEventListener('click',  ()=>{
+        modalBg.classList.remove('active-bg');
+    });
+        
     }
     
