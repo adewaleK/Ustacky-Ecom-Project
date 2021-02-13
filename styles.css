@@ -420,6 +420,11 @@ input{
     border-radius: 5px;
 }
 
+.remove-from-cart{
+    background-color: #FFE9D6;
+    outline: none;
+}
+
 .footer-items{
     display: flex;
     justify-content: space-between;

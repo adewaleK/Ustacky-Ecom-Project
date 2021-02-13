@@ -44,6 +44,14 @@ const products = [
 ];
 
 
+var id = 0;
+var totalPrice=0;
+let modalBg = document.querySelector('.modal-bg');
+let cartBtn = document.querySelector('.cart');
+var inc = document.getElementById('inc');
+var dec = document.getElementById('dec');
+
+
 function loadProducts(){
     products.map(product => {
         var products = document.getElementById('products'); 
@@ -68,15 +76,15 @@ function loadProducts(){
 document.addEventListener("DOMContentLoaded", function(){
     loadProducts();
     addToCart();
-    cont();
+    continueShopping();
+    //removeFromCart();
+    //adjustQty();
+
+    
+    
 
 });
 
-
-let modalBg = document.querySelector('.modal-bg');
-let cartBtn = document.querySelector('.cart');
-cartBtn.addEventListener('click', cartModal);
-window.addEventListener('click', removeModal)
 
 function cartModal(){
     modalBg.classList.add('active-bg');
@@ -88,6 +96,8 @@ function removeModal(event){
     }
 }
 
+
+
 //add to cart functionality
    //Click on Add to Cart Button
       //get the product through its ID
@@ -98,7 +108,7 @@ function removeModal(event){
 
     var btns = document.querySelectorAll(".add-to-cart");
     var btn_arr = Array.from(btns);
-    let myCart = [];
+    var myCart = [];
     function addToCart(){
         var btns = document.querySelectorAll(".add-to-cart");
         var btns_arr = Array.from(btns);
@@ -108,20 +118,40 @@ function removeModal(event){
                 if (!myCart.includes(prod)){       
                     myCart.push(prod);
                     displayCart(prod[0]);
+                    btn.textContent = 'REMOVE FROM CART'; 
+                    btn.classList.add('remove-from-cart');   
+                }else{
+                    //removeFromCart(prod);
+                    //displayCart(prod);
+                    //console.log(prod[0]);
+                    //myCart = removeFromCart(prod);
+                    //displayCart(prod);
                 }
                 
-            })     
-        });
-        
+            }) 
+            
+        }); 
     }
+
+    // function removeFromCart(item){
+
+    //     var btns = document.querySelectorAll(".remove-btn");
+    //     var btns_arr = Array.from(btns);
+
+    //     var itemsLeft =[];
+    //     for(let i=0; i<myCart.length; i++){
+    //         if(myCart[i] != item){
+    //             itemsLeft.push((myCart[i]));
+    //         }
+    //     }
+    //     console.log(itemsLeft);
+    //     return itemsLeft;
+    // }
     
-    var id = 0;
     
-    var totalPrice=0;
-    function displayCart(pd){ 
-        
+
+    function displayCart(pd){  
         id++;
-        //myCart.map(item =>{
           var cartBox = document.getElementById('cart-list');
             cartBox.innerHTML += `
                 <tr>
@@ -129,30 +159,39 @@ function removeModal(event){
                 <td>${pd.title}</td>
                 <td>${pd.price}</td>
                 <td class="qty-btn">
-                    <button type="button"> - </button>
+                    <button type="button" id="dec"> - </button>
                     <span>${pd.quantity}</span>
-                    <button type="button"> + </button>
+                    <button type="button" id="inc" onclick="adjustQty"> + </button>
                 </td>
                 <td><button type="button" class="remove-btn" data-id="${pd.id}">Remove</button></td>
                 </tr>
             `;
 
+            sum(pd);
+
+            // inc.onclick = function(){
+            //     alert('hello man')
+            //  }
+    
+        }
+
+        
+        //Total price
+        function sum(pd){
             totalPrice += pd.price * pd.quantity;
             console.log(totalPrice);
 
             var total = document.getElementById('total-price');
             total.innerHTML = totalPrice;
             document.getElementById('num').innerHTML = myCart.length;
-           
-         //})
-    }
+        }
 
     //continue shopping
-    function cont(){
+    function continueShopping(){
         var backToShop = document.getElementById('continue');
         backToShop.addEventListener('click',  ()=>{
         modalBg.classList.remove('active-bg');
     });
-        
-    }
+    
+}
     
