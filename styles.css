@@ -452,7 +452,6 @@ input{
 }
 
 @media screen and (max-width: 768px) {
-
     .next-btn button{
         padding: 2% 6%;
         font-size: 12px;
@@ -518,6 +517,15 @@ input{
         justify-content: center;
         margin-top: 50px;
         padding-bottom: 0;
+     }
+
+     .prod-feature{
+        height: 393px;
+        width: 320px;
+     }
+
+     .add-to-cart{
+         width: 250px;
      }
 
      .about div{

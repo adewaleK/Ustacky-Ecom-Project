@@ -87,10 +87,15 @@ function loadProducts(){
 //Display Add to Cart Modal
 function cartModal(){
     modalBg.classList.add('active-bg');
-    //console.log(revList);
-    removeFromDom();
-    inc();
+    //var rbtn = [...document.querySelectorAll('.remove-btn')];
     
+    // console.log(rbtn);
+
+    
+
+    //removeFromDom();
+    //inc();
+    console.log(removeArr);
 }
 
 //Dismiss Add to Cart Modal
@@ -104,7 +109,7 @@ function removeModal(event){
 function addToCart(item, bt){     
     if (!myCart.includes(item)){       
         myCart.push(item);
-        displayCart(item);
+        showCartItems(myCart);
         bt.innerHTML = 'REMOVE FROM CART'; 
         bt.classList.add('remove-from-cart');  
         bt.style.backgroundColor = '#FFE9D6';        
@@ -144,29 +149,66 @@ function displayCart(pd){
 
 //Remove an Item from Cart
 function removeFromCart(item){
-   var itemsLeft;
-   for (var i = 0; i < myCart.length; i++) { 
-        if (myCart[i] === item) { 
-            var removed = myCart.splice(i, 1); 
-            console.log(removed);
-            itemsLeft = myCart;
-            sum(itemsLeft);
-        } 
-    }  
+    let itemsLeft;
+    for (let i = 0; i < myCart.length; i++) { 
+         if (myCart[i] === item) { 
+             let removed = myCart.splice(i, 1); 
+             itemsLeft = myCart;
+             sum(itemsLeft);
+             if(itemsLeft.length==0){
+                 revList.innerHTML='';
+             }
+             showCartItems(itemsLeft);
+         } 
+     }  
+     //item.quantity = 1;
+     return itemsLeft;
 
-}
+ }
 
 //Remove Cart Items From DOM and Update Price
 function removeFromDom(){
-    revList.addEventListener('click', function(e){
-        if(e.target.className == 'remove-btn'){
-            var row = e.target.parentElement.parentElement; 
-            revList.removeChild(row);
-            var toRemove = myCart.filter(prod=>prod.id == e.target.dataset.id);
-            console.log(toRemove[0]);
-            removeFromCart(toRemove[0]);
-        }   
+    // revList.addEventListener('click', function(e){
+    //     if(e.target.className == 'remove-btn'){
+    //         var row = e.target.parentElement.parentElement; 
+    //         revList.removeChild(row);
+    //         var toRemove = myCart.filter(prod=>prod.id == e.target.dataset.id);
+    //         console.log(toRemove[0]);
+    //         removeFromCart(toRemove[0]);
+    //     }   
+    // })
+    rbtn.forEach(btn => {
+        var toRemove = myCart.find(prod=>prod.id == btn.dataset.id);
+        console.log(toRemove);
+        btn.addEventListener('click', removeFromCart(toRemove));
+        
     })
+}
+
+function showCartItems(items){
+    let result='';
+    items.forEach((c,i) => {
+        result += `
+        <tr>
+        <td>${i+1}</td>
+        <td>${c.title}</td>
+        <td>${c.price}</td>
+        <td class="qty-btn">
+            <button type="button" id="dec" class="dec-btn" data-id="${c.id}"> - </button>
+            <span id="qty">${c.quantity}</span>
+            <button type="button" id="inc" class="inc-btn" data-id="${c.id}"> + </button>
+        </td>
+        <td><button type="button" class="remove-btn" data-id="${c.id}">Remove</button></td>
+        </tr>
+    `;
+   revList.innerHTML = result; 
+  sum(items);
+
+
+  removeBtns = document.querySelectorAll(".remove-btn");
+  removeArr = Array.from(removeBtns);
+  
+  })
 }
 
 //Get Total Price of Cart Items
@@ -178,21 +220,6 @@ function sum(arr){
     total.innerHTML = sum;
     document.getElementById('num').innerHTML = arr.length;
     return sum;
-}
-
-//Increase Quantity
-function inc(){
-  revList.addEventListener('click', function(e){
-    //   if(e.target.className == ){
-
-    //   }
-    console.log(e.target);
-  })
-}
-
-//Decrease Quantity
-function dec(){
-    
 }
 
 //Continue Shopping

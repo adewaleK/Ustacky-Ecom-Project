@@ -27,9 +27,9 @@
                             <td>Air Pod</td>
                             <td>400</td>
                             <td class="qty-btn">
-                                <button type="button"> - </button>
-                                <span>2</span>
-                                <button type="button"> + </button>
+                                <button type="button" data-id="${product.id}"> - </button>
+                                <span id="qty"></span>
+                                <button type="button" data-id="${product.id}"> + </button>
                             </td>
                             <td><button type="button" class="remove-btn">Remove</button></td>
                           </tr>
@@ -134,7 +134,6 @@
                     <p>Designed and Crafted by a Frontend Ninja</p>
                 </div>
             </div>
-            <div id="test-id"></div>
         </div>
     </div>  
 </body>
