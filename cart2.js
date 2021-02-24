@@ -45,23 +45,21 @@ products = [
 ];
 
 //Variables
-var id = 0;
+//var id = 0;
 var totalPrice=0;
 let modalBg = document.querySelector('.modal-bg');
-let actionBtns;
-let cartBtn = document.querySelector('.cart');
+//let actionBtns;
+var cartBtn = document.querySelector('.cart');
 var btns;
-//var btns = document.querySelectorAll(".add-to-cart");
 var btns_arr;
 var removeBtns;
 var removeArr;
 var myCart = [];
 var backToShop = document.getElementById('continue');
-//var cartBox = document.getElementById('cart-list');
 var total = document.getElementById('total-price');
 var productsCon = document.getElementById('products'); 
 var revList = document.getElementById('cart-list');
-var qtyBtns;
+//var qtyBtns;
 
 //Load and Display All Shop Products
 function loadProducts(){
@@ -88,10 +86,8 @@ function loadProducts(){
 //Display Add to Cart Modal
 function cartModal(){
     modalBg.classList.add('active-bg');
-    //console.log(revList);
-    
-    //inc();
 }
+
 removeFromDom();
 
 //Dismiss Add to Cart Modal
@@ -117,9 +113,6 @@ function addToCart(item, bt){
         bt.style.outline = 'none';
         bt.innerHTML = 'ADD TO CART';
     }
-
-    //console.log(item.quantity);
-
 }
 
 //Display All Cart Items
@@ -140,12 +133,12 @@ function displayCart(pd){
         `;
 
         sum(myCart);
-        actionBtns = document.querySelectorAll('.action-btns');
+        //actionBtns = document.querySelectorAll('.action-btns');
         removeBtns = document.querySelectorAll(".remove-btn");
-        qtyBtns = document.getElementById('qty-btn');
+        //qtyBtns = document.getElementById('qty-btn');
         removeArr = Array.from(removeBtns);
-        actionBtnsArr = Array.from(actionBtns);
-        console.log(removeArr);
+        //actionBtnsArr = Array.from(actionBtns);
+        //console.log(removeArr);
 }
 
 //Remove an Item from Cart
@@ -153,19 +146,15 @@ function removeFromCart(item){
    let itemsLeft;
    for (let i = 0; i < myCart.length; i++) { 
         if (myCart[i] === item) { 
-            let removed = myCart.splice(i, 1); 
-            
+            let removed = myCart.splice(i, 1);  
             itemsLeft = myCart;
             sum(itemsLeft);
-
             if(itemsLeft.length==0){
                 revList.innerHTML='';
             }
             showCartItems(itemsLeft);
         } 
     }  
-
-    //item.quantity = 1;
     return itemsLeft;
 }
 
@@ -191,7 +180,7 @@ function showCartItems(items){
   })
 }
 
-//Remove Cart Items From DOM and Update Price
+//Remove Cart Items From DOM and Update Price and Stylings
 function removeFromDom(){
     revList.addEventListener('click', function(e){
         if(e.target.className == 'remove-btn'){
@@ -206,10 +195,11 @@ function removeFromDom(){
             removeFromCart(toRemove[0]);
          } else if(e.target.className == 'dec-btn'){     
             const qtyValue = e.target.parentElement.children[1];
+            const priceDom = e.target.parentElement.previousElementSibling;
             var decQty = myCart.find(cat => cat.id == parseInt(e.target.dataset.id));
                 if(decQty.quantity > 1){
                     decQty.quantity = decQty.quantity - 1;
-                    //e.target.parentElement.children[1].innerHTML = decQty.quantity;
+                    priceDom.innerHTML = decQty.price * decQty.quantity;
                     qtyValue.innerHTML = decQty.quantity;
                     sum(myCart);
                    }
@@ -218,15 +208,13 @@ function removeFromDom(){
                 }
 
         }else if(e.target.className == 'inc-btn'){   
-            console.log(e.target);
-            
             const qtyValue = e.target.parentElement.children[1]; 
-            var incQty = myCart.find(cat => cat.id == parseInt(e.target.dataset.id)); 
-            
+            const priceDom = e.target.parentElement.previousElementSibling;
+            const incQty = myCart.find(cat => cat.id == parseInt(e.target.dataset.id));  
             incQty.quantity = incQty.quantity + 1;
+            priceDom.innerHTML = incQty.price * incQty.quantity;
             sum(myCart);
             qtyValue.innerHTML = incQty.quantity;
-            console.log(incQty.quantity);
         }
 
     })
@@ -241,11 +229,6 @@ function sum(arr){
     total.innerHTML = sum;
     document.getElementById('num').innerHTML = arr.length;
     return sum;
-}
-
-//Decrease Quantity
-function dec(){
-    
 }
 
 //Continue Shopping
@@ -270,9 +253,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }); 
 
     removeArr.forEach(function(btn){
-        console.log('clicked');
         var prod = myCart.filter(p => p.id == parseInt(btn.dataset.id));
         btn.addEventListener('click', ()=>removeFromCart(prod[0]));
     }); 
-
 })
