@@ -59,6 +59,7 @@ var backToShop = document.getElementById('continue');
 var total = document.getElementById('total-price');
 var productsCon = document.getElementById('products'); 
 var revList = document.getElementById('cart-list');
+var x;
 //var qtyBtns;
 
 //Load and Display All Shop Products
@@ -86,6 +87,10 @@ function loadProducts(){
 //Display Add to Cart Modal
 function cartModal(){
     modalBg.classList.add('active-bg');
+
+    document.querySelector('.name');
+    //console.log(x);
+    //x.addEventListener('click', () => handleName(e));
 }
 
 removeFromDom();
@@ -116,37 +121,37 @@ function addToCart(item, bt){
 }
 
 //Display All Cart Items
-function displayCart(pd){  
-    id++;
-        cartBox.innerHTML += `
-            <tr>
-            <td>${id}</td>
-            <td>${pd.title}</td>
-            <td>${pd.price}</td>
-            <td class="qty-btn">
-                <button type="button" id="dec" class="dec-btn" data-id="${pd.id}"> - </button>
-                <span id="${pd.id}">${pd.quantity}</span>
-                <button type="button" id="inc" class="inc-btn" data-id="${pd.id}"> + </button>
-            </td>
-            <td><button type="button" class="remove-btn" data-id="${pd.id}">Remove</button></td>
-            </tr>
-        `;
+// function displayCart(pd){  
+//     id++;
+//         cartBox.innerHTML += `
+//             <tr>
+//             <td>${id}</td>
+//             <td>${pd.title}</td>
+//             <td>${pd.price}</td>
+//             <td class="qty-btn">
+//                 <button type="button" id="dec" class="dec-btn" data-id="${pd.id}"> - </button>
+//                 <span id="${pd.id}">${pd.quantity}</span>
+//                 <button type="button" id="inc" class="inc-btn" data-id="${pd.id}"> + </button>
+//             </td>
+//             <td><button type="button" class="remove-btn" data-id="${pd.id}">Remove</button></td>
+//             </tr>
+//         `;
 
-        sum(myCart);
-        //actionBtns = document.querySelectorAll('.action-btns');
-        removeBtns = document.querySelectorAll(".remove-btn");
-        //qtyBtns = document.getElementById('qty-btn');
-        removeArr = Array.from(removeBtns);
-        //actionBtnsArr = Array.from(actionBtns);
-        //console.log(removeArr);
-}
+//         sum(myCart);
+//         //actionBtns = document.querySelectorAll('.action-btns');
+//         removeBtns = document.querySelectorAll(".remove-btn");
+//         //qtyBtns = document.getElementById('qty-btn');
+//         removeArr = Array.from(removeBtns);
+//         //actionBtnsArr = Array.from(actionBtns);
+//         //console.log(removeArr);
+// }
 
 //Remove an Item from Cart
 function removeFromCart(item){
    let itemsLeft;
    for (let i = 0; i < myCart.length; i++) { 
         if (myCart[i] === item) { 
-            let removed = myCart.splice(i, 1);  
+            myCart.splice(i, 1);  
             itemsLeft = myCart;
             sum(itemsLeft);
             if(itemsLeft.length==0){
@@ -189,7 +194,6 @@ function removeFromDom(){
             let toRemove = myCart.filter(prod=>prod.id == e.target.dataset.id);
             let btnToRem = [...row.children][4].children[0].dataset.id
             let actualBtn = btns_arr.find(bt => bt.dataset.id == btnToRem);
-            console.log(actualBtn);
             actualBtn.style.backgroundColor = '#FF9A3D';
             actualBtn.textContent = 'ADD TO CART';
             removeFromCart(toRemove[0]);
@@ -204,7 +208,7 @@ function removeFromDom(){
                     sum(myCart);
                    }
                 else{
-                    alert('can not be possible: ' + decQty.quantity);
+                    alert(`You cannot have less than 1 item. If you wish to remove the item click remove`);
                 }
 
         }else if(e.target.className == 'inc-btn'){   
@@ -215,9 +219,62 @@ function removeFromDom(){
             priceDom.innerHTML = incQty.price * incQty.quantity;
             sum(myCart);
             qtyValue.innerHTML = incQty.quantity;
-        }
-
+    
+         }
     })
+}
+
+//Input Name Validation
+function handleName(e){
+    let validName = /[a-zA-Z]+$/;
+    let name = e.target.value;
+    if(name == ''){
+        document.getElementById('name').innerText = 'Please enter your name';
+    }else if(!name.match(validName)){
+        document.getElementById('name').innerText = 'Invalid name';
+    }else{
+        document.getElementById('name').innerText = '';
+        e.target.style.backgroundColor = '#e8f0fd'; 
+    }
+
+    return name;
+}
+
+//Input Email Validation
+function handleEmail(e){
+    let email = e.target.value;
+    let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if(email == ''){
+        document.getElementById('email').innerText = 'Please enter an email';
+    }else if(!email.match(validEmail)){
+        document.getElementById('email').innerText = 'Invalid email';
+    }else{
+        document.getElementById('email').innerText = '';
+        e.target.style.backgroundColor = '#e8f0fd'; 
+    }
+
+    return email;
+}
+
+//Input Phone Number Validation
+function handlePhone(e){
+    let phoneNumber = e.target.value;
+    let numbers = /^[0-9]+$/;
+    let checkMatch = phoneNumber.match(numbers);
+
+    if(phoneNumber === ''){
+        document.getElementById('number').innerText = 'Please enter your telephone number';
+    }else if(!checkMatch){
+        document.getElementById('number').innerText = 'Phone number can only be number';  
+        console.log(phoneNumber.length);
+    }else if(checkMatch && phoneNumber.length < 11){
+        document.getElementById('number').innerText = 'Phone number cannot be less than 11';  
+    }else{
+        document.getElementById('number').innerText = ''; 
+        e.target.style.backgroundColor = '#e8f0fd'; 
+    }
+
+    return phoneNumber;
 }
 
 //Get Total Price of Cart Items
@@ -236,15 +293,36 @@ function continueShopping(){
     modalBg.classList.remove('active-bg');
 }
 
+//Set Name DOM
+function setName(){
+    return document.querySelector('.name');
+}
+
+//Set Email DOM
+function setEmail(){
+    return document.querySelector('.email');
+}
+
+//Set Phone Number DOM 
+function setPhone(){
+    return document.querySelector('.number');
+}
+
 //Event Listeners
 document.addEventListener('DOMContentLoaded', function(){
-    
+
     loadProducts();
     
     cartBtn.addEventListener('click', cartModal);
 
     modalBg.addEventListener('click', removeModal);
 
+    setName().addEventListener('blur', handleName);
+
+    setEmail().addEventListener('blur', handleEmail);
+
+    setPhone().addEventListener('blur', handlePhone);
+    
     backToShop.addEventListener('click', continueShopping);
 
     btns_arr.forEach(function(btn){
@@ -256,4 +334,5 @@ document.addEventListener('DOMContentLoaded', function(){
         var prod = myCart.filter(p => p.id == parseInt(btn.dataset.id));
         btn.addEventListener('click', ()=>removeFromCart(prod[0]));
     }); 
+
 })

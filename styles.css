@@ -111,11 +111,21 @@ form{
     padding: 3% 0;
 }
 
-input{
+.input{
     width: 80%;
-    padding: 1.5%;
     margin-bottom: 10px;
-    background-color: #FFCD9E;
+}
+
+.input input{
+    width: 100%;
+    background-color: #ffe9d6;
+    padding: 2.5%;
+}
+
+.input span{
+    color: #bc373c;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .summary-actions{
