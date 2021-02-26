@@ -60,6 +60,7 @@ var productsCon = document.getElementById('products');
 var revList = document.getElementById('cart-list');
 var orderDetails = document.querySelector('.orders-summary');
 var checkoutBtn;
+var okayBtn = document.getElementById('ok');
 var cname;
 var cemail;
 var cphone;
@@ -89,41 +90,46 @@ function loadProducts(){
 //Display Add to Cart Modal
 function cartModal(){
     modalBg.classList.add('active-bg');
-    //document.querySelector('.name');
 }
 
 function summaryModal(){
     document.getElementById('cus-name').innerText = cname;
     summaryBg.classList.add('active-bg');
+    showSummary(myCart);
+    okayBtn = document.getElementById('ok');
 }
 
 checkoutBtn = document.getElementById('pay');
 
-// if(myCart.length < 1){
-//     console.log('you need to add at least one item to the cart');
-//     return
-// }
 
 function handlePayment(e){
    if(myCart.length < 1){
       alert('Please select a product');
       return
    }else{
-     //removeModal();
+     clear();
      payWithPaystack();
-     //console.log(showSummary(myCart));
-     showSummary(myCart);
      console.log(myCart);
    }
-
 }
 
 removeFromDom();
 
+function clear(){
+    modalBg.classList.remove('active-bg');
+}
+
 //Dismiss Add to Cart Modal
 function removeModal(event){
     if(event.target == modalBg){
-       modalBg.classList.remove('active-bg');
+       //modalBg.classList.remove('active-bg');
+       clear();
+    }
+}
+
+function removeBg(event){
+    if(event.target == summaryBg){
+       summaryBg.classList.remove('active-bg');
     }
 }
 
@@ -145,33 +151,6 @@ function addToCart(item, bt){
     }
 }
 
-//Display All Cart Items
-// function displayCart(pd){  
-//     id++;
-//         cartBox.innerHTML += `
-//             <tr>
-//             <td>${id}</td>
-//             <td>${pd.title}</td>
-//             <td>${pd.price}</td>
-//             <td class="qty-btn">
-//                 <button type="button" id="dec" class="dec-btn" data-id="${pd.id}"> - </button>
-//                 <span id="${pd.id}">${pd.quantity}</span>
-//                 <button type="button" id="inc" class="inc-btn" data-id="${pd.id}"> + </button>
-//             </td>
-//             <td><button type="button" class="remove-btn" data-id="${pd.id}">Remove</button></td>
-//             </tr>
-//         `;
-
-//         sum(myCart);
-//         //actionBtns = document.querySelectorAll('.action-btns');
-//         removeBtns = document.querySelectorAll(".remove-btn");
-//         //qtyBtns = document.getElementById('qty-btn');
-//         removeArr = Array.from(removeBtns);
-//         //actionBtnsArr = Array.from(actionBtns);
-//         //console.log(removeArr);
-// }
-
-//Remove an Item from Cart
 function removeFromCart(item){
    let itemsLeft;
    for (let i = 0; i < myCart.length; i++) { 
@@ -222,7 +201,10 @@ function showSummary(items){
     `;
    orderDetails.innerHTML = result; 
   })
+  //okayBtn = document.getElementById('ok');
 }
+
+//okayBtn.addEventListener('click', clear);
 
 //Remove Cart Items From DOM and Update Price and Stylings
 function removeFromDom(){
@@ -382,6 +364,10 @@ document.addEventListener('DOMContentLoaded', function(){
     modalBg.addEventListener('click', removeModal);
 
     checkoutBtn.addEventListener('click', handlePayment);
+
+    summaryBg.addEventListener('click', removeBg);
+
+    okayBtn.addEventListener('click', clear);
 
     setName().addEventListener('blur', handleName);
 

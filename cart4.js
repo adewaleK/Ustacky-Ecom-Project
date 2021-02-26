@@ -230,7 +230,6 @@ function continueShopping(){
 //Event Listeners
 document.addEventListener('DOMContentLoaded', function(){
     
-    
     loadProducts();
     
     cartBtn.addEventListener('click', cartModal);
