@@ -45,10 +45,9 @@ products = [
 ];
 
 //Variables
-//var id = 0;
 var totalPrice=0;
 let modalBg = document.querySelector('.modal-bg');
-//let actionBtns;
+let summaryBg = document.querySelector('.modal-bm');
 var cartBtn = document.querySelector('.cart');
 var btns;
 var btns_arr;
@@ -59,8 +58,11 @@ var backToShop = document.getElementById('continue');
 var total = document.getElementById('total-price');
 var productsCon = document.getElementById('products'); 
 var revList = document.getElementById('cart-list');
-var x;
-//var qtyBtns;
+var orderDetails = document.querySelector('.orders-summary');
+var checkoutBtn;
+var cname;
+var cemail;
+var cphone;
 
 //Load and Display All Shop Products
 function loadProducts(){
@@ -87,10 +89,33 @@ function loadProducts(){
 //Display Add to Cart Modal
 function cartModal(){
     modalBg.classList.add('active-bg');
+    //document.querySelector('.name');
+}
 
-    document.querySelector('.name');
-    //console.log(x);
-    //x.addEventListener('click', () => handleName(e));
+function summaryModal(){
+    document.getElementById('cus-name').innerText = cname;
+    summaryBg.classList.add('active-bg');
+}
+
+checkoutBtn = document.getElementById('pay');
+
+// if(myCart.length < 1){
+//     console.log('you need to add at least one item to the cart');
+//     return
+// }
+
+function handlePayment(e){
+   if(myCart.length < 1){
+      alert('Please select a product');
+      return
+   }else{
+     //removeModal();
+     payWithPaystack();
+     //console.log(showSummary(myCart));
+     showSummary(myCart);
+     console.log(myCart);
+   }
+
 }
 
 removeFromDom();
@@ -185,6 +210,20 @@ function showCartItems(items){
   })
 }
 
+function showSummary(items){
+    let result='';
+    items.forEach((c,i) => {
+        result += `
+        <tr>
+            <td>${i+1}</td>
+            <td>${c.title}</td>
+            <td>${c.quantity}</td>
+       </tr>   
+    `;
+   orderDetails.innerHTML = result; 
+  })
+}
+
 //Remove Cart Items From DOM and Update Price and Stylings
 function removeFromDom(){
     revList.addEventListener('click', function(e){
@@ -208,7 +247,7 @@ function removeFromDom(){
                     sum(myCart);
                    }
                 else{
-                    alert(`You cannot have less than 1 item. If you wish to remove the item click remove`);
+                    alert('You cannot have less than 1 item. If you wish to remove the item click remove');
                 }
 
         }else if(e.target.className == 'inc-btn'){   
@@ -227,54 +266,57 @@ function removeFromDom(){
 //Input Name Validation
 function handleName(e){
     let validName = /[a-zA-Z]+$/;
-    let name = e.target.value;
-    if(name == ''){
+    //let name = e.target.value;
+    cname = e.target.value;
+    if(cname == ''){
         document.getElementById('name').innerText = 'Please enter your name';
-    }else if(!name.match(validName)){
+    }else if(!cname.match(validName)){
         document.getElementById('name').innerText = 'Invalid name';
     }else{
         document.getElementById('name').innerText = '';
         e.target.style.backgroundColor = '#e8f0fd'; 
     }
 
-    return name;
+    return cname;
 }
 
 //Input Email Validation
 function handleEmail(e){
-    let email = e.target.value;
+    //let email = e.target.value;
+    cemail = e.target.value;
     let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if(email == ''){
+    if(cemail == ''){
         document.getElementById('email').innerText = 'Please enter an email';
-    }else if(!email.match(validEmail)){
+    }else if(!cemail.match(validEmail)){
         document.getElementById('email').innerText = 'Invalid email';
     }else{
         document.getElementById('email').innerText = '';
         e.target.style.backgroundColor = '#e8f0fd'; 
     }
 
-    return email;
+    return cemail;
 }
 
 //Input Phone Number Validation
 function handlePhone(e){
-    let phoneNumber = e.target.value;
+    //let phoneNumber = e.target.value;
+    cphone = e.target.value;
     let numbers = /^[0-9]+$/;
-    let checkMatch = phoneNumber.match(numbers);
+    let checkMatch = cphone.match(numbers);
 
-    if(phoneNumber === ''){
+    if(cphone === ''){
         document.getElementById('number').innerText = 'Please enter your telephone number';
     }else if(!checkMatch){
         document.getElementById('number').innerText = 'Phone number can only be number';  
-        console.log(phoneNumber.length);
-    }else if(checkMatch && phoneNumber.length < 11){
+        console.log(cphone.length);
+    }else if(checkMatch && cphone.length < 11){
         document.getElementById('number').innerText = 'Phone number cannot be less than 11';  
     }else{
         document.getElementById('number').innerText = ''; 
         e.target.style.backgroundColor = '#e8f0fd'; 
     }
 
-    return phoneNumber;
+    return cphone;
 }
 
 //Get Total Price of Cart Items
@@ -308,6 +350,28 @@ function setPhone(){
     return document.querySelector('.number');
 }
 
+function payWithPaystack() {
+  let handler = PaystackPop.setup({
+    key: 'pk_test_bebb7f2304810763defe6e4c769f7e5b0cd80a04', // Replace with your public key
+    // email: document.getElementById("email-address").value,
+    // amount: document.getElementById("amount").value * 100,
+    email: cemail,
+    amount: sum(myCart)*100,
+    ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+    // label: "Optional string that replaces customer email"
+    onClose: function(){
+      alert('Window closed.');
+    },
+    callback: function(response){
+    //   let message = 'Payment complete! Reference: ' + response.reference;
+    //   alert(message);
+    console.log('Payment completed');
+    summaryModal();
+;    }
+  });
+  handler.openIframe();
+}
+
 //Event Listeners
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -316,6 +380,8 @@ document.addEventListener('DOMContentLoaded', function(){
     cartBtn.addEventListener('click', cartModal);
 
     modalBg.addEventListener('click', removeModal);
+
+    checkoutBtn.addEventListener('click', handlePayment);
 
     setName().addEventListener('blur', handleName);
 

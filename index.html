@@ -62,7 +62,7 @@
                     </div>
                     <div class="next-btn">
                         <button type="button" id="continue">Continue Shopping</button>
-                        <button type="button">Checkout</button>
+                        <button type="button" id="pay">Checkout</button>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
             <div class="cart-modal">
                 <div class="recap-details">
                     <div class="order-details">
-                        <p>Thank You, <span>Ibrahim</span>, Your Order Has been Received</p>
+                        <p>Thank You, <span id="cus-name">Ibrahim</span>, Your Order Has been Received</p>
                         <img src="images/check.svg" alt="check">
                         <p>Summary</p>
                         <table>
@@ -82,7 +82,7 @@
                                 <th>Quantity</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="orders-summary">
                             <tr>
                                 <td>1</td>
                                 <td>Apple watch</td>
@@ -153,5 +153,6 @@
     </div>  
 </body>
 
+<script src="https://js.paystack.co/v1/inline.js"></script> 
 <script src="cart2.js"></script>
 </html>
