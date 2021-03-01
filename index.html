@@ -21,43 +21,48 @@
                             <th></th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
+                        <tbody id="cart-list">
+                          <!-- <tr>
                             <td>1</td>
                             <td>Air Pod</td>
                             <td>400</td>
                             <td class="qty-btn">
-                                <button type="button"> - </button>
-                                <span>2</span>
-                                <button type="button"> + </button>
+                                <button type="button" data-id="${product.id}"> - </button>
+                                <span id="qty"></span>
+                                <button type="button" data-id="${product.id}"> + </button>
                             </td>
                             <td><button type="button" class="remove-btn">Remove</button></td>
                           </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>Mobile Phone</td>
-                            <td>700</td>
-                            <td class="qty-btn">
-                                <button type="button"> - </button>
-                                <span>1</span>
-                                <button type="button"> + </button>
-                            </td>
-                            <td><button type="button" class="remove-btn">Remove</button></td>
-                          </tr>
+                          -->
                         </tbody>
                     </table>
-                    <form action="" >
-                        <input type="text" placeholder="Your Name">
-                        <input type="email" placeholder="Your Email">
-                        <input type="number" placeholder="Your Phone Number">
+                    <form action="" class="form">
+                        <div class="input">
+                            <p style="text-align: center;">
+                                <input type="text" placeholder="Your Name" class="name">
+                                <span id="name"></span>
+                            </p>
+                        </div>
+                        <div class="input">
+                            <p style="text-align: center;">
+                                <input type="email" placeholder="Your Email" class="email">
+                                <span id="email"></span>
+                            </p>
+                        </div>
+                        <div class="input">
+                            <p style="text-align: center;">
+                                <input type="text" placeholder="Your Phone Number" class="number">
+                                <span id="number"></span>
+                            </p>
+                        </div>
                     </form>
                     <div class="summary-actions">
                         <h3>Total Amount to be Paid</h3>
-                        <h2>&#8358;80,000</h2>
+                        <h2>&#8358;<span id="total-price">0</span></h2>
                     </div>
                     <div class="next-btn">
-                        <button type="button">Continue Shopping</button>
-                        <button type="button">Checkout</button>
+                        <button type="button" id="continue">Continue Shopping</button>
+                        <button type="button" id="pay">Checkout</button>
                     </div>
                 </div>
             </div>
@@ -66,7 +71,7 @@
             <div class="cart-modal">
                 <div class="recap-details">
                     <div class="order-details">
-                        <p>Thank You, <span>Ibrahim</span>, Your Order Has been Received</p>
+                        <p>Thank You, <span id="cus-name">Ibrahim</span>, Your Order Has been Received</p>
                         <img src="images/check.svg" alt="check">
                         <p>Summary</p>
                         <table>
@@ -77,7 +82,7 @@
                                 <th>Quantity</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="orders-summary">
                             <tr>
                                 <td>1</td>
                                 <td>Apple watch</td>
@@ -85,7 +90,7 @@
                             </tr>   
                         </table>
                     </div>
-                    <button type="button">OK</button>
+                    <button type="button" id="ok">OK</button>
                 </div>
             </div>
         </div>
@@ -109,7 +114,7 @@
                 <h1>THE E-<br>MILLENIAL<br> STORE</h1>
                 <img src="images/heroImage.png" alt="heroImage">
             </div>
-            <div class="shop"><h3><a href="#shop">SHOP NOW</a></h3></div>
+            <a href="#shop" class="myshop"><div class="shop"><h3>SHOP NOW</h3></div></a>
         </div>
        </div>
         
@@ -144,10 +149,10 @@
                     <p>Designed and Crafted by a Frontend Ninja</p>
                 </div>
             </div>
-            <div id="test-id"></div>
         </div>
     </div>  
 </body>
 
-<script src="cart.js"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script> 
+<script src="cart2.js"></script>
 </html>
