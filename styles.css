@@ -31,24 +31,6 @@ body{
     transition: visibility 0s, opacity 0.8s;
 }
 
-.modal-bm{
-    display: flex;
-    justify-content: center;
-    padding: 2%;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.6);
-    visibility: hidden; 
-    opacity: 0; 
-    /* transition: visibility 0s, opacity 0.8s; */
-    transition: visibility 0.8s ease-in-out;
-    transition: opacity 0.8ms ease-in-out;
-}
-
 .active-bg{
     visibility: visible;
     opacity: 1;
@@ -591,11 +573,6 @@ form{
         flex-direction: row;
     }
     
-    /* .navbar li a{
-        margin-right: 25px;
-        font-size: 13px;
-    } */
-
     .navbar li a{
         font-size: 24px;
     }

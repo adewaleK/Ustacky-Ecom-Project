@@ -90,9 +90,10 @@ function loadProducts(){
 //Display Add to Cart Modal
 function cartModal(){
     modalBg.classList.add('active-bg');
-    console.log(okayBtn);
+    
 }
 
+//Displays summary Modal
 function summaryModal(){
     document.getElementById('cus-name').innerText = cname;
     summaryBg.classList.add('active-bg');
@@ -100,9 +101,10 @@ function summaryModal(){
     okayBtn = document.getElementById('ok');
 }
 
+//Create Checkout Element
 checkoutBtn = document.getElementById('pay');
 
-//CONTROLS PAYMENT FUNCTIONALITY THROUGH PAYSTACK METHOD
+//Controls Payment Functionality Through Paystack Method
 function handlePayment(e){
    if(myCart.length < 1){
       alert('Please select a product');
@@ -113,8 +115,10 @@ function handlePayment(e){
    }
 }
 
+//Remove cart Item from DOM and Update Css
 removeFromDom();
 
+//Clear Modal
 function clear(){
     modalBg.classList.remove('active-bg');
 }
@@ -122,11 +126,11 @@ function clear(){
 //Dismiss Add to Cart Modal
 function removeModal(event){
     if(event.target == modalBg){
-       //modalBg.classList.remove('active-bg');
        clear();
     }
 }
 
+//Remove Summary Modal When The Background Is Clicked
 function removeBg(event){
     if(event.target == summaryBg){
        summaryBg.classList.remove('active-bg');
@@ -151,6 +155,7 @@ function addToCart(item, bt){
     }
 }
 
+//Remove an Item from cart(Data structure)
 function removeFromCart(item){
    let itemsLeft;
    for (let i = 0; i < myCart.length; i++) { 
@@ -189,6 +194,7 @@ function showCartItems(items){
   })
 }
 
+//Show list of orderd items
 function showSummary(items){
     let result='';
     items.forEach((c,i) => {
@@ -201,10 +207,12 @@ function showSummary(items){
     `;
    orderDetails.innerHTML = result; 
   })
-  //okayBtn = document.getElementById('ok');
 }
 
-//okayBtn.addEventListener('click', clear);
+//Close Summary Modal
+okayBtn.addEventListener('click', function(){
+    summaryBg.classList.remove('active-bg');
+});
 
 //Remove Cart Items From DOM and Update Price and Stylings
 function removeFromDom(){
@@ -341,6 +349,7 @@ function setPhone(){
     return document.querySelector('.number');
 }
 
+//Paystack Function to hzndle Payment
 function payWithPaystack() {
   let handler = PaystackPop.setup({
     key: 'pk_test_bebb7f2304810763defe6e4c769f7e5b0cd80a04', // Replace with your public key
