@@ -481,8 +481,7 @@ form{
     }
 
     .navbar li a{
-        margin-right: 13px;
-        font-size: 10px;
+        font-size: 18px;
     }
 
     .hero-section h1{
@@ -584,9 +583,13 @@ form{
         flex-direction: row;
     }
     
-    .navbar li a{
+    /* .navbar li a{
         margin-right: 25px;
         font-size: 13px;
+    } */
+
+    .navbar li a{
+        font-size: 24px;
     }
 
     .logo img{
@@ -621,7 +624,7 @@ form{
      }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1000px) {
+@media screen and (min-width: 769px) and (max-width: 800px) {
 
     .navbar ul{
         justify-content: flex-start;
@@ -629,6 +632,15 @@ form{
 
     .products {
         grid-template-columns: auto auto;
+     }
+
+     .prod-feature{
+        height: 393px;
+        width: 320px;
+     }
+
+     .add-to-cart{
+         width: 250px;
      }
 
      .hero-section img{

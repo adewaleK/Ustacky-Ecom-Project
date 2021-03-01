@@ -90,6 +90,7 @@ function loadProducts(){
 //Display Add to Cart Modal
 function cartModal(){
     modalBg.classList.add('active-bg');
+    console.log(okayBtn);
 }
 
 function summaryModal(){
@@ -101,7 +102,7 @@ function summaryModal(){
 
 checkoutBtn = document.getElementById('pay');
 
-
+//CONTROLS PAYMENT FUNCTIONALITY THROUGH PAYSTACK METHOD
 function handlePayment(e){
    if(myCart.length < 1){
       alert('Please select a product');
@@ -109,7 +110,6 @@ function handlePayment(e){
    }else{
      clear();
      payWithPaystack();
-     console.log(myCart);
    }
 }
 
@@ -347,7 +347,6 @@ function payWithPaystack() {
     callback: function(response){
     //   let message = 'Payment complete! Reference: ' + response.reference;
     //   alert(message);
-    console.log('Payment completed');
     summaryModal();
 ;    }
   });
