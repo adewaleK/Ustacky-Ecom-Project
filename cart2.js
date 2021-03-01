@@ -252,11 +252,14 @@ function handleName(e){
     cname = e.target.value;
     if(cname == ''){
         document.getElementById('name').innerText = 'Please enter your name';
+        document.querySelector('.name').classList.add('invalid-input');
     }else if(!cname.match(validName)){
         document.getElementById('name').innerText = 'Invalid name';
+        document.querySelector('.name').classList.add('invalid-input');
     }else{
         document.getElementById('name').innerText = '';
         e.target.style.backgroundColor = '#e8f0fd'; 
+        document.querySelector('.name').classList.add('valid-input');
     }
 
     return cname;
@@ -269,11 +272,15 @@ function handleEmail(e){
     let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if(cemail == ''){
         document.getElementById('email').innerText = 'Please enter an email';
+        document.querySelector('.email').classList.add('invalid-input');
+        
     }else if(!cemail.match(validEmail)){
         document.getElementById('email').innerText = 'Invalid email';
+        document.querySelector('.email').classList.add('invalid-input');
     }else{
         document.getElementById('email').innerText = '';
         e.target.style.backgroundColor = '#e8f0fd'; 
+        document.querySelector('.email').classList.add('valid-input');
     }
 
     return cemail;
@@ -288,14 +295,16 @@ function handlePhone(e){
 
     if(cphone === ''){
         document.getElementById('number').innerText = 'Please enter your telephone number';
+        document.querySelector('.number').classList.add('invalid-input');
     }else if(!checkMatch){
         document.getElementById('number').innerText = 'Phone number can only be number';  
-        console.log(cphone.length);
+        document.querySelector('.number').classList.add('invalid-input');
     }else if(checkMatch && cphone.length < 11){
         document.getElementById('number').innerText = 'Phone number cannot be less than 11';  
     }else{
         document.getElementById('number').innerText = ''; 
         e.target.style.backgroundColor = '#e8f0fd'; 
+        document.querySelector('.number').classList.add('valid-input');
     }
 
     return cphone;
