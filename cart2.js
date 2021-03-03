@@ -41,7 +41,8 @@ products = [
         title: 'AIR PODS',
         image: 'product6.png',
         price: 75000
-    }
+    },
+    
 ];
 
 //Variables
@@ -51,8 +52,6 @@ let summaryBg = document.querySelector('.modal-bm');
 var cartBtn = document.querySelector('.cart');
 var btns;
 var btns_arr;
-var removeBtns;
-var removeArr;
 var myCart = [];
 var backToShop = document.getElementById('continue');
 var total = document.getElementById('total-price');
@@ -90,7 +89,6 @@ function loadProducts(){
 //Display Add to Cart Modal
 function cartModal(){
     modalBg.classList.add('active-bg');
-    
 }
 
 //Displays summary Modal
@@ -134,6 +132,7 @@ function removeModal(event){
 function removeBg(event){
     if(event.target == summaryBg){
        summaryBg.classList.remove('active-bg');
+       resetCart();
     }
 }
 
@@ -149,10 +148,14 @@ function addToCart(item, bt){
     }else{
         removeFromCart(item);
         bt.classList.remove('remove-from-cart');  
-        bt.style.backgroundColor = '#FF9A3D';
-        bt.style.outline = 'none';
-        bt.innerHTML = 'ADD TO CART';
+        updateBtn(bt);
     }
+}
+
+function updateBtn(btn){
+    btn.style.backgroundColor = '#FF9A3D';
+    btn.style.outline = 'none';
+    btn.innerHTML = 'ADD TO CART';
 }
 
 //Remove an Item from cart(Data structure)
@@ -212,6 +215,7 @@ function showSummary(items){
 //Close Summary Modal
 okayBtn.addEventListener('click', function(){
     summaryBg.classList.remove('active-bg');
+    resetCart();
 });
 
 //Remove Cart Items From DOM and Update Price and Stylings
@@ -251,6 +255,21 @@ function removeFromDom(){
     
          }
     })
+}
+
+
+//Reset Cart After a Successful Checkout
+function resetCart(){
+    myCart = [];
+    document.getElementById('num').innerHTML = myCart.length;
+    setName().value = '';
+    setEmail().value = '';
+    setPhone().value = '';
+    revList.innerHTML = ''; 
+    total.innerHTML = 0;
+    btns_arr.forEach(btn =>
+        updateBtn(btn)
+    );
 }
 
 //Input Name Validation
@@ -308,7 +327,7 @@ function handlePhone(e){
         document.getElementById('number').innerText = 'Phone number can only be number';  
         document.querySelector('.number').classList.add('invalid-input');
     }else if(checkMatch && cphone.length < 11){
-        document.getElementById('number').innerText = 'Phone number cannot be less than 11';  
+        document.getElementById('number').innerText = 'Phone number cannot be less than 11 characters';  
     }else{
         document.getElementById('number').innerText = ''; 
         e.target.style.backgroundColor = '#e8f0fd'; 
@@ -398,10 +417,4 @@ document.addEventListener('DOMContentLoaded', function(){
         var prod = products.find(p => p.id == parseInt(btn.dataset.id));
         btn.addEventListener('click', ()=>addToCart(prod,btn));
     }); 
-
-    removeArr.forEach(function(btn){
-        var prod = myCart.filter(p => p.id == parseInt(btn.dataset.id));
-        btn.addEventListener('click', ()=>removeFromCart(prod[0]));
-    }); 
-
 })
