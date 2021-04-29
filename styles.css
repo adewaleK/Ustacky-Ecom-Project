@@ -221,7 +221,6 @@ form{
     display: flex;
     justify-content: space-between;  
     list-style: none;
-
 }
 
 .navbar li a{
@@ -337,6 +336,7 @@ form{
     background-size: cover;
     background-repeat: no-repeat;
     height: 30em;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -607,7 +607,7 @@ form{
      }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) and (max-width: 1200px) {
 
     .intro-section{
         width: 100vw;
@@ -619,8 +619,8 @@ form{
 
     .products {
         grid-template-columns: auto auto;
-     }
-     
+    }
+  
      .hero-section img{
         width: 380px;
     }
