@@ -206,7 +206,7 @@ form{
 
 .intro-section{
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
 }
 
 .navbar{
@@ -214,6 +214,7 @@ form{
     justify-content: space-between;
     align-items: center;
     padding-top: 20px;
+    padding: 20px 5% 0 5%;
 }
 
 .navbar ul{
@@ -322,7 +323,7 @@ form{
 .product-card{
     margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
 }
 
 .product-card h3{
@@ -335,10 +336,7 @@ form{
 .prod-feature{
     background-size: cover;
     background-repeat: no-repeat;
-    /* height: 393px;
-    width: 301px;  */
-    width: 380px;
-    height: 430px;
+    height: 30em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -416,7 +414,7 @@ form{
 .add-to-cart{
     background-color: #FF9A3D;
     text-align: center; 
-    width: 300px;
+    width: 80%;
     font-weight: 800;
     margin: 15px 10%;
     border: none;
@@ -609,7 +607,11 @@ form{
      }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .intro-section{
+        width: 100vw;
+    }
 
     .navbar ul{
         justify-content: flex-start;
@@ -617,22 +619,8 @@ form{
 
     .products {
         grid-template-columns: auto auto;
-        /* display: flex;
-        align-items: center; */
-        /* flex-wrap: wrap; */
      }
-
-     .prod-feature{
-        height: 393px;
-        width: 320px;
-        /* width: 440px;
-        height: 440px; */
-     }
-
-     .add-to-cart{
-         width: 250px;
-     }
-
+     
      .hero-section img{
         width: 380px;
     }
@@ -646,46 +634,3 @@ form{
     }
 }
 
-@media only screen and (min-width: 1024px) and (max-height: 1366px){
-    .container{
-        width: 1336px;
-    }
-
-    .products {
-        /* grid-template-columns: auto auto; */
-        display: flex;
-        align-items: center; 
-        flex-wrap: wrap;
-        padding-left: 2.5%;
-     }
-
-     .prod-feature{
-        width: 550px;
-        height: 700px;
-        flex-grow: 1;
-     }
-
-     .logo img{
-        width: 200px;
-        border: 1px solid red;
-     }
-
-     .cart {
-        width: 170px;
-        padding: 34px;  
-     }
-
-     .navbar ul h2{
-         font-size: 30px;
-     }
-
-     .add-to-cart{
-         width: 450px;
-         padding: 15px 0;
-         font-size: 15px;
-     }
-
-     .designer p{
-         font-size: 25px;
-     }
-}
