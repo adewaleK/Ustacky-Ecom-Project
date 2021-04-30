@@ -109,10 +109,10 @@ checkoutBtn = document.getElementById('pay');
 function handlePayment(e){
    if(myCart.length < 1){
       alert('Please select a product');
-      return
+      return;
    }else if(!isValidName || !isValidEmail || !isValidPhone){
       document.querySelector('.form-msg').style.display='block';
-      return
+      return;
    }else{
       document.querySelector('.form-msg').style.display='none';
       clear();
@@ -288,14 +288,16 @@ function handleName(e){
     let validName = /[a-zA-Z]+$/;
     //let name = e.target.value;
     cname = e.target.value;
-    if(cname == ''){
+    if(cname === ''){
         document.getElementById('name').innerText = 'Please enter your name';
         document.querySelector('.name').classList.add('invalid-input');
+        isValidName=false;
         cartModal();
         return;
     }else if(!cname.match(validName)){
         document.getElementById('name').innerText = 'Invalid name';
         document.querySelector('.name').classList.add('invalid-input');
+        isValidName=false
         cartModal();
         return;
     }else{
@@ -314,14 +316,16 @@ function handleEmail(e){
     //let email = e.target.value;
     cemail = e.target.value;
     let validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if(cemail == ''){
+    if(cemail === ''){
         document.getElementById('email').innerText = 'Please enter an email';
         document.querySelector('.email').classList.add('invalid-input');
+        isValidEmail=false;
         cartModal();
         return;  
     }else if(!cemail.match(validEmail)){
         document.getElementById('email').innerText = 'Invalid email';
         document.querySelector('.email').classList.add('invalid-input');
+        isValidEmail=false;
         cartModal();
         return;
     }else{
@@ -345,16 +349,19 @@ function handlePhone(e){
     if(cphone === ''){
         document.getElementById('number').innerText = 'Please enter your telephone number';
         document.querySelector('.number').classList.add('invalid-input');
+        isValidPhone=false;
         cartModal();
         return;
     }else if(!checkMatch){
         document.getElementById('number').innerText = 'Phone number can only be number';  
         document.querySelector('.number').classList.add('invalid-input');
+        isValidPhone=false;
         cartModal();
         return;
     }else if(checkMatch && cphone.length < 11){
         document.getElementById('number').innerText = 'Phone number cannot be less than 11 characters';  
         cartModal();
+        isValidPhone=false;
         return;
     }else{
         document.getElementById('number').innerText = ''; 
