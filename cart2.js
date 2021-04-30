@@ -63,6 +63,9 @@ var okayBtn = document.getElementById('ok');
 var cname;
 var cemail;
 var cphone;
+var isValidName=false;
+var isValidEmail = false;
+var isValidPhone = false;
 
 //Load and Display All Shop Products
 function loadProducts(){
@@ -107,10 +110,15 @@ function handlePayment(e){
    if(myCart.length < 1){
       alert('Please select a product');
       return
+   }else if(!isValidName || !isValidEmail || !isValidPhone){
+      document.querySelector('.form-msg').style.display='block';
+      return
    }else{
-     clear();
-     payWithPaystack();
-   }
+      document.querySelector('.form-msg').style.display='none';
+      clear();
+      payWithPaystack();
+  }
+    
 }
 
 //Remove cart Item from DOM and Update Css
@@ -267,6 +275,9 @@ function resetCart(){
     setPhone().value = '';
     revList.innerHTML = ''; 
     total.innerHTML = 0;
+    isValidName=false;
+    isValidEmail=false;
+    isValidPhone=false;
     btns_arr.forEach(btn =>
         updateBtn(btn)
     );
@@ -280,16 +291,22 @@ function handleName(e){
     if(cname == ''){
         document.getElementById('name').innerText = 'Please enter your name';
         document.querySelector('.name').classList.add('invalid-input');
+        cartModal();
+        return;
     }else if(!cname.match(validName)){
         document.getElementById('name').innerText = 'Invalid name';
         document.querySelector('.name').classList.add('invalid-input');
+        cartModal();
+        return;
     }else{
         document.getElementById('name').innerText = '';
         e.target.style.backgroundColor = '#e8f0fd'; 
         document.querySelector('.name').classList.add('valid-input');
+        isValidName=true;
+        return cname;
     }
 
-    return cname;
+    //return cname;
 }
 
 //Input Email Validation
@@ -300,17 +317,22 @@ function handleEmail(e){
     if(cemail == ''){
         document.getElementById('email').innerText = 'Please enter an email';
         document.querySelector('.email').classList.add('invalid-input');
-        
+        cartModal();
+        return;  
     }else if(!cemail.match(validEmail)){
         document.getElementById('email').innerText = 'Invalid email';
         document.querySelector('.email').classList.add('invalid-input');
+        cartModal();
+        return;
     }else{
         document.getElementById('email').innerText = '';
         e.target.style.backgroundColor = '#e8f0fd'; 
         document.querySelector('.email').classList.add('valid-input');
+        isValidEmail=true;
+        return cemail;
     }
 
-    return cemail;
+    //return cemail;
 }
 
 //Input Phone Number Validation
@@ -323,18 +345,26 @@ function handlePhone(e){
     if(cphone === ''){
         document.getElementById('number').innerText = 'Please enter your telephone number';
         document.querySelector('.number').classList.add('invalid-input');
+        cartModal();
+        return;
     }else if(!checkMatch){
         document.getElementById('number').innerText = 'Phone number can only be number';  
         document.querySelector('.number').classList.add('invalid-input');
+        cartModal();
+        return;
     }else if(checkMatch && cphone.length < 11){
         document.getElementById('number').innerText = 'Phone number cannot be less than 11 characters';  
+        cartModal();
+        return;
     }else{
         document.getElementById('number').innerText = ''; 
         e.target.style.backgroundColor = '#e8f0fd'; 
         document.querySelector('.number').classList.add('valid-input');
+        isValidPhone=true;
+        return cphone;
     }
 
-    return cphone;
+    //return cphone;
 }
 
 //Get Total Price of Cart Items

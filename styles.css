@@ -47,6 +47,21 @@ body{
     justify-content: space-between;
 }
 
+.form-msg{
+    background-color: pink;
+    padding: 1%;
+    margin-bottom: 1%;
+    width: 80%;
+    border-radius: 5px;
+    display: none;
+}
+
+.form-msg p{
+    text-align: center;
+    color: rgb(206, 19, 50);
+    font-weight: bold;
+}
+
 table{
     width: 100%;
 }
